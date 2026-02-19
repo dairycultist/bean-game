@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=12 format=3 uid="uid://5ilcdthf5fh5"]
 
 [ext_resource type="Texture2D" uid="uid://dxliqmg4qqobw" path="res://jar.png" id="1_nxogm"]
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="4_m7jmp"]
 [ext_resource type="AudioStream" uid="uid://dp6m5oyilj24o" path="res://pop.wav" id="5_y2354"]
 [ext_resource type="Script" uid="uid://dppaxmnswb3f2" path="res://stat_manager.gd" id="6_y2354"]
+[ext_resource type="Script" uid="uid://v526r847j73e" path="res://boons/base_boon.gd" id="7_ni31j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxogm"]
 size = Vector2(220, 300)
@@ -77,3 +78,6 @@ text = "Points: 0"
 label_settings = SubResource("LabelSettings_m7jmp")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BaseBoon" type="Sprite2D" parent="StatManager"]
+script = ExtResource("7_ni31j")

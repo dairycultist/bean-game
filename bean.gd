@@ -45,7 +45,7 @@ func set_color(the_color: BeanColor = -1 as BeanColor):
 func _body_entered(body):
 	
 	# match
-	if body is Bean and body.color == color and not body.freeze:
+	if body is Bean and body.color == color and not body.freeze and body.name < name: # last part so only one triggers the match
 		queue_free()
 		body.queue_free()
 		_audio_on_match.pitch_scale = randf_range(0.9, 1.0)

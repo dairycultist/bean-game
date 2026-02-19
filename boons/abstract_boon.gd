@@ -1,4 +1,23 @@
-extends Node
+@abstract
+extends Sprite2D
+class_name Boon
+
+# TODO add boon animation for idling and triggering
+
+func _ready() -> void:
+	
+	BeanSignals.on_beans_matched.connect(_on_beans_matched)
+	BeanSignals.on_bean_dropped.connect(_on_bean_dropped)
+	BeanSignals.on_bean_escaped.connect(_on_bean_escaped)
+
+func _on_beans_matched(_color: Bean.BeanColor) -> bool: # returns if triggered (for animation)
+	return false
+
+func _on_bean_dropped(_color: Bean.BeanColor) -> bool:
+	return false
+
+func _on_bean_escaped(_color: Bean.BeanColor) -> bool:
+	return false
 
 # BOONS:
 # When a bean is dropped, add 1 point for every bean in the jar.
@@ -21,5 +40,3 @@ extends Node
 
 # boons connect to signals and use the parameters to determine if they should go off
 # boons are children of the score node (this global class connects them to bean events)
-
-# there's a hidden boon that implements the default point behaviour (i.e. giving points on match)
