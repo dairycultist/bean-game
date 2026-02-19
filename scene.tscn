@@ -47,6 +47,8 @@ shape = SubResource("RectangleShape2D_nxogm")
 
 [node name="AudioOnCollide" type="AudioStreamPlayer" parent="BeanDropper"]
 stream = ExtResource("4_m7jmp")
+max_polyphony = 4
 
 [node name="AudioOnMatch" type="AudioStreamPlayer" parent="BeanDropper"]
 stream = ExtResource("5_y2354")
+max_polyphony = 4

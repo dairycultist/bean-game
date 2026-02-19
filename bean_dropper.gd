@@ -25,6 +25,8 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 		the_bean.collision_layer = 1
 		the_bean.freeze = false
 		
+		BeanSignals.on_bean_dropped.emit(the_bean.color)
+		
 		# make a new the_bean
 		the_bean = bean.instantiate()
 		add_child(the_bean)
