@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn757hnlqkpnk"]
+
+[ext_resource type="Texture2D" uid="uid://dq4gtuiplio1w" path="res://bean.png" id="1_b6u4a"]
+[ext_resource type="Script" uid="uid://de32m35xsr1vk" path="res://bean.gd" id="1_dq0o7"]
+[ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="3_7qwah"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2354"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7qwah"]
+radius = 24.020824
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_udjov"]
+radius = 26.019224
+
+[node name="Bean" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_dq0o7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_b6u4a")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-12, -10)
+shape = SubResource("CircleShape2D_y2354")
+
+[node name="Collider2" type="CollisionShape2D" parent="."]
+position = Vector2(9, 8)
+shape = SubResource("CircleShape2D_7qwah")
+
+[node name="Collider3" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 4)
+shape = SubResource("CircleShape2D_udjov")
+
+[node name="AudioOnCollide" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7qwah")
