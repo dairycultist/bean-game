@@ -10,9 +10,9 @@ func _ready() -> void:
 	the_bean = bean.instantiate()
 	add_child(the_bean)
 	the_bean.set_color()
-	the_bean.freeze = true
 	the_bean.global_position.y = -166
 	the_bean.collision_layer = 0
+	the_bean.freeze = true
 
 func _process(_delta: float) -> void:
 	the_bean.global_position.x = clamp((camera.get_local_mouse_position() + camera.position).x, -100, 100)
@@ -29,6 +29,6 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 		the_bean = bean.instantiate()
 		add_child(the_bean)
 		the_bean.set_color()
-		the_bean.freeze = true
 		the_bean.global_position.y = -166
 		the_bean.collision_layer = 0
+		the_bean.freeze = true
