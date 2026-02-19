@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn757hnlqkpnk"]
+[gd_scene load_steps=7 format=3 uid="uid://cn757hnlqkpnk"]
 
 [ext_resource type="Texture2D" uid="uid://dq4gtuiplio1w" path="res://bean.png" id="1_b6u4a"]
 [ext_resource type="Script" uid="uid://de32m35xsr1vk" path="res://bean.gd" id="1_dq0o7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dq0o7"]
+friction = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2354"]
 radius = 22.0
@@ -13,6 +16,7 @@ radius = 24.020824
 radius = 26.019224
 
 [node name="Bean" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_dq0o7")
 contact_monitor = true
 max_contacts_reported = 3
 script = ExtResource("1_dq0o7")

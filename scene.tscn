@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=11 format=3 uid="uid://5ilcdthf5fh5"]
 
 [ext_resource type="Texture2D" uid="uid://dxliqmg4qqobw" path="res://jar.png" id="1_nxogm"]
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
 [ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="4_m7jmp"]
 [ext_resource type="AudioStream" uid="uid://dp6m5oyilj24o" path="res://pop.wav" id="5_y2354"]
+[ext_resource type="Script" uid="uid://dppaxmnswb3f2" path="res://stat_manager.gd" id="6_y2354"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxogm"]
+size = Vector2(220, 300)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3cyc"]
 size = Vector2(10, 256)
@@ -12,27 +16,10 @@ size = Vector2(10, 256)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7jmp"]
 size = Vector2(256, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxogm"]
-size = Vector2(220, 300)
+[sub_resource type="LabelSettings" id="LabelSettings_m7jmp"]
+font_size = 24
 
 [node name="Scene" type="Node2D"]
-
-[node name="Jar" type="StaticBody2D" parent="."]
-
-[node name="Sprite" type="Sprite2D" parent="Jar"]
-texture = ExtResource("1_nxogm")
-
-[node name="ColliderL" type="CollisionShape2D" parent="Jar"]
-position = Vector2(-118, 0)
-shape = SubResource("RectangleShape2D_u3cyc")
-
-[node name="ColliderR" type="CollisionShape2D" parent="Jar"]
-position = Vector2(118, 0)
-shape = SubResource("RectangleShape2D_u3cyc")
-
-[node name="ColliderD" type="CollisionShape2D" parent="Jar"]
-position = Vector2(0, 116)
-shape = SubResource("RectangleShape2D_m7jmp")
 
 [node name="Camera" type="Camera2D" parent="."]
 
@@ -52,3 +39,41 @@ max_polyphony = 4
 [node name="AudioOnMatch" type="AudioStreamPlayer" parent="BeanDropper"]
 stream = ExtResource("5_y2354")
 max_polyphony = 4
+
+[node name="Jar" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Jar"]
+texture = ExtResource("1_nxogm")
+
+[node name="ColliderL" type="CollisionShape2D" parent="Jar"]
+position = Vector2(-118, 0)
+shape = SubResource("RectangleShape2D_u3cyc")
+
+[node name="ColliderR" type="CollisionShape2D" parent="Jar"]
+position = Vector2(118, 0)
+shape = SubResource("RectangleShape2D_u3cyc")
+
+[node name="ColliderD" type="CollisionShape2D" parent="Jar"]
+position = Vector2(0, 116)
+shape = SubResource("RectangleShape2D_m7jmp")
+
+[node name="StatManager" type="Node2D" parent="."]
+script = ExtResource("6_y2354")
+
+[node name="PointLabel" type="Label" parent="StatManager"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -41.5
+offset_right = -184.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 40)
+text = "Points: 0"
+label_settings = SubResource("LabelSettings_m7jmp")
+horizontal_alignment = 1
+vertical_alignment = 1
