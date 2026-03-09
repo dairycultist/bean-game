@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 	avg_speed = lerp(avg_speed, linear_velocity.length(), delta)
 
 	if position.y < -200:
-		BeanSignals.on_bean_escaped.emit(color)
 		_audio_on_match.play()
 		queue_free()
 
@@ -44,14 +43,8 @@ func set_color(the_color: BeanColor = -1 as BeanColor):
 
 func _body_entered(body):
 	
-	# match
-	if body is Bean and body.color == color and not body.freeze and body.name < name: # last part so only one triggers the match
-		queue_free()
-		body.queue_free()
-		_audio_on_match.pitch_scale = randf_range(0.9, 1.0)
-		_audio_on_match.play()
-		BeanSignals.on_beans_matched.emit(color)
-		return
+	# TEMP
+	BeanSignals.on_bean_hit_peg.emit(self, null)
 	
 	# play collide sound
 	_audio_on_collide.volume_linear = (2.0 / (1 + exp(-avg_speed * 0.01))) - 1.0

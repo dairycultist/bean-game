@@ -1,8 +1,8 @@
 extends Node
 
 @warning_ignore("unused_signal")
-signal on_beans_matched(color: Bean.BeanColor)
+signal on_bean_dropped(bean: Bean)
 @warning_ignore("unused_signal")
-signal on_bean_dropped(color: Bean.BeanColor)
+signal on_bean_hit_peg(bean: Bean, peg: Node)
 @warning_ignore("unused_signal")
-signal on_bean_escaped(color: Bean.BeanColor)
+signal on_bean_in_basket(bean: Bean, peg: Node)

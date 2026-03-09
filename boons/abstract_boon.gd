@@ -2,22 +2,34 @@
 extends Sprite2D
 class_name Boon
 
+# I have the idea to make plinko but with jelly beans and instead of a giraffe
+# it's a smiley anime girl with huge boobs and you can send a bunch of beans at
+# once and they go plink plink plink and fall into baskets at the bottom which
+# give a range of points and plinking also gives a small amount of points
+
+# currently a merging game but I think peggle would be more stimming
+# number go up AND clink clink clink sounds AND many rigidbodies
+
 # TODO add boon animation for idling and triggering
 
 func _ready() -> void:
 	
-	BeanSignals.on_beans_matched.connect(_on_beans_matched)
 	BeanSignals.on_bean_dropped.connect(_on_bean_dropped)
-	BeanSignals.on_bean_escaped.connect(_on_bean_escaped)
+	BeanSignals.on_bean_hit_peg.connect(_on_bean_hit_peg)
+	BeanSignals.on_bean_in_basket.connect(_on_bean_in_basket)
 
-func _on_beans_matched(_color: Bean.BeanColor) -> bool: # returns if triggered (for animation)
+# returns if triggered (for animation)
+func _on_bean_dropped(_bean: Bean) -> bool:
 	return false
 
-func _on_bean_dropped(_color: Bean.BeanColor) -> bool:
+func _on_bean_hit_peg(_bean: Bean, _peg: Node) -> bool:
 	return false
 
-func _on_bean_escaped(_color: Bean.BeanColor) -> bool:
+func _on_bean_in_basket(_bean: Bean, _peg: Node) -> bool:
 	return false
+
+# boons work on a "pick one between each round" system
+# you can only have like four boons equipped at once, but you can destroy a boon at any time
 
 # BOONS:
 # When a bean is dropped, add 1 point for every bean in the jar.
