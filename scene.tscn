@@ -1,32 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=8 format=3 uid="uid://5ilcdthf5fh5"]
 
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
 [ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="4_m7jmp"]
-[ext_resource type="Texture2D" uid="uid://c2m0ggmtj7p6f" path="res://bumper.png" id="5_ni31j"]
-[ext_resource type="AudioStream" uid="uid://dp6m5oyilj24o" path="res://pop.wav" id="5_y2354"]
+[ext_resource type="PackedScene" uid="uid://20qdpjnnrdot" path="res://bumper.tscn" id="5_ni31j"]
 [ext_resource type="Script" uid="uid://dppaxmnswb3f2" path="res://stat_manager.gd" id="6_y2354"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxogm"]
 size = Vector2(220, 300)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y2354"]
-radius = 64.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_m7jmp"]
 font_size = 24
-
-[sub_resource type="GDScript" id="GDScript_y2354"]
-script/source = "extends Boon
-
-# hidden boon that implements the default point behaviour (i.e. giving points on match)
-
-func _on_beans_matched(_color: Bean.BeanColor) -> bool:
-	
-	get_parent().add_points(5)
-	
-	return true
-"
 
 [node name="Scene" type="Node2D"]
 
@@ -45,17 +29,7 @@ shape = SubResource("RectangleShape2D_nxogm")
 stream = ExtResource("4_m7jmp")
 max_polyphony = 4
 
-[node name="AudioOnMatch" type="AudioStreamPlayer" parent="BeanDropper"]
-stream = ExtResource("5_y2354")
-max_polyphony = 4
-
-[node name="Jar" type="StaticBody2D" parent="."]
-
-[node name="Sprite" type="Sprite2D" parent="Jar"]
-texture = ExtResource("5_ni31j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Jar"]
-shape = SubResource("CircleShape2D_y2354")
+[node name="Bumper" parent="." instance=ExtResource("5_ni31j")]
 
 [node name="StatManager" type="Node2D" parent="."]
 script = ExtResource("6_y2354")
@@ -77,6 +51,3 @@ text = "Points: 0"
 label_settings = SubResource("LabelSettings_m7jmp")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="BaseBoon" type="Sprite2D" parent="StatManager"]
-script = SubResource("GDScript_y2354")

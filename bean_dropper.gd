@@ -9,7 +9,6 @@ func _ready() -> void:
 	
 	the_bean = bean.instantiate()
 	add_child(the_bean)
-	the_bean.set_color()
 	the_bean.global_position.y = -166
 	the_bean.collision_layer = 0
 	the_bean.freeze = true
@@ -30,7 +29,6 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 		# make a new the_bean
 		the_bean = bean.instantiate()
 		add_child(the_bean)
-		the_bean.set_color()
 		the_bean.global_position.y = -166
 		the_bean.collision_layer = 0
 		the_bean.freeze = true

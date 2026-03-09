@@ -2,49 +2,29 @@ extends RigidBody2D
 class_name Bean
 
 var avg_speed: float
-var color: BeanColor
 
 var _audio_on_collide: AudioStreamPlayer
-var _audio_on_match: AudioStreamPlayer
-
-enum BeanColor {
-	RED, YELLOW, GREEN, BLUE, PINK
-}
 
 func _ready() -> void:
 	
 	body_entered.connect(_body_entered)
 	
 	_audio_on_collide = get_parent().get_node("AudioOnCollide")
-	_audio_on_match   = get_parent().get_node("AudioOnMatch")
+	
+	var r := randf()
+	var g := randf()
+	
+	$Sprite.modulate  = Color(r, g, 1.0 - r - g)
 
 func _process(delta: float) -> void:
 	
 	avg_speed = lerp(avg_speed, linear_velocity.length(), delta)
 
-	if position.y < -200:
-		_audio_on_match.play()
-		queue_free()
-
-@warning_ignore("int_as_enum_without_match")
-func set_color(the_color: BeanColor = -1 as BeanColor):
+func _body_entered(body):
 	
-	if the_color == -1:
-		color = BeanColor.values().pick_random()
-	else:
-		color = the_color
-	
-	match (color):
-		BeanColor.RED: $Sprite.modulate    = Color(1.0, 0.3, 0.2)
-		BeanColor.YELLOW: $Sprite.modulate = Color(1.0, 8.0, 0.2)
-		BeanColor.GREEN: $Sprite.modulate  = Color(0.1, 0.8, 0.3)
-		BeanColor.BLUE: $Sprite.modulate   = Color(0.1, 0.5, 0.9)
-		BeanColor.PINK: $Sprite.modulate   = Color(0.9, 0.6, 0.7)
-
-func _body_entered(_body):
-	
-	# TEMP
-	BeanSignals.on_bean_hit_peg.emit(self, null)
+	# bumper
+	if body is Bumper:
+		body.bump(self)
 	
 	# play collide sound
 	_audio_on_collide.volume_linear = (2.0 / (1 + exp(-avg_speed * 0.01))) - 1.0
