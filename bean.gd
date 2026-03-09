@@ -41,7 +41,7 @@ func set_color(the_color: BeanColor = -1 as BeanColor):
 		BeanColor.BLUE: $Sprite.modulate   = Color(0.1, 0.5, 0.9)
 		BeanColor.PINK: $Sprite.modulate   = Color(0.9, 0.6, 0.7)
 
-func _body_entered(body):
+func _body_entered(_body):
 	
 	# TEMP
 	BeanSignals.on_bean_hit_peg.emit(self, null)

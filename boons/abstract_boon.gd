@@ -18,15 +18,14 @@ func _ready() -> void:
 	BeanSignals.on_bean_hit_peg.connect(_on_bean_hit_peg)
 	BeanSignals.on_bean_in_basket.connect(_on_bean_in_basket)
 
-# returns if triggered (for animation)
-func _on_bean_dropped(_bean: Bean) -> bool:
-	return false
+func _on_bean_dropped(_bean: Bean):
+	pass
 
-func _on_bean_hit_peg(_bean: Bean, _peg: Node) -> bool:
-	return false
+func _on_bean_hit_peg(_bean: Bean, _peg: Node):
+	pass
 
-func _on_bean_in_basket(_bean: Bean, _peg: Node) -> bool:
-	return false
+func _on_bean_in_basket(_bean: Bean, _peg: Node):
+	pass
 
 # boons work on a "pick one between each round" system
 # you can only have like four boons equipped at once, but you can destroy a boon at any time
