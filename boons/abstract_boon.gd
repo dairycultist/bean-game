@@ -12,6 +12,8 @@ class_name Boon
 
 # TODO add boon animation for idling and triggering
 
+# TODO make shadow part of shader?
+
 func _ready() -> void:
 	
 	BeanSignals.on_bean_dropped.connect(_on_bean_dropped)

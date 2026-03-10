@@ -4,10 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
 [ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="4_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://20qdpjnnrdot" path="res://bumper.tscn" id="5_ni31j"]
+[ext_resource type="Texture2D" uid="uid://8esxwq4mp1eo" path="res://bg.png" id="5_y2354"]
 [ext_resource type="Script" uid="uid://dppaxmnswb3f2" path="res://stat_manager.gd" id="6_y2354"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxogm"]
-size = Vector2(220, 300)
 
 [sub_resource type="LabelSettings" id="LabelSettings_m7jmp"]
 font_size = 12
@@ -17,27 +15,38 @@ font_size = 12
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(6, 6)
 
-[node name="DropRegion" type="Node2D" parent="."]
+[node name="DropRegion" type="NinePatchRect" parent="."]
+texture_filter = 1
+offset_left = -120.0
+offset_top = -150.0
+offset_right = 120.0
+offset_bottom = 150.0
+texture = ExtResource("5_y2354")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Bumper" parent="DropRegion" instance=ExtResource("5_ni31j")]
+position = Vector2(120, 150)
 
 [node name="Bumper2" parent="DropRegion" instance=ExtResource("5_ni31j")]
-position = Vector2(-87, 44)
+position = Vector2(33, 194)
 
 [node name="Bumper3" parent="DropRegion" instance=ExtResource("5_ni31j")]
-position = Vector2(82, 45)
+position = Vector2(202, 195)
 
 [node name="Bumper4" parent="DropRegion" instance=ExtResource("5_ni31j")]
-position = Vector2(-2, 83)
+position = Vector2(118, 233)
 
 [node name="BeanDropper" type="Area2D" parent="DropRegion" node_paths=PackedStringArray("camera")]
+position = Vector2(120, 150)
 script = ExtResource("2_nxogm")
 bean = ExtResource("3_3253y")
 camera = NodePath("../../Camera")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DropRegion/BeanDropper"]
-position = Vector2(0, -40)
-shape = SubResource("RectangleShape2D_nxogm")
 
 [node name="AudioOnCollide" type="AudioStreamPlayer" parent="DropRegion/BeanDropper"]
 stream = ExtResource("4_m7jmp")
@@ -53,9 +62,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -219.0
+offset_left = -237.0
 offset_top = -41.0
-offset_right = -59.0
+offset_right = -77.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2

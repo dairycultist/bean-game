@@ -5,16 +5,29 @@ extends Node2D
 
 var the_bean: Bean
 
+var collider: CollisionShape2D
+
 func _ready() -> void:
 	
 	the_bean = bean.instantiate()
 	add_child(the_bean)
-	the_bean.global_position.y = -166
+	the_bean.global_position.y = get_parent().global_position.y
 	the_bean.collision_layer = 0
 	the_bean.freeze = true
+	
+	# initialize collision
+	collider = CollisionShape2D.new()
+	
+	add_child(collider)
+	
+	collider.shape = RectangleShape2D.new()
+	collider.shape.size.x = get_parent().size.x
+	collider.shape.size.y = get_parent().size.y
 
 func _process(_delta: float) -> void:
-	the_bean.global_position.x = clamp((camera.get_local_mouse_position() + camera.position).x, -100, 100)
+	
+	var bound = collider.shape.size.x / 2
+	the_bean.global_position.x = clamp((camera.get_local_mouse_position() + camera.position).x, -bound, bound)
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 
@@ -29,6 +42,6 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 		# make a new the_bean
 		the_bean = bean.instantiate()
 		add_child(the_bean)
-		the_bean.global_position.y = -166
+		the_bean.global_position.y = get_parent().global_position.y
 		the_bean.collision_layer = 0
 		the_bean.freeze = true
