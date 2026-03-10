@@ -14,8 +14,8 @@ func _ready() -> void:
 	# set color using OKLab
 	var L := 1.0;
 	var angle := randf() * PI * 2.0;
-	var a := cos(angle) * 0.25;
-	var b := sin(angle) * 0.25;
+	var a := cos(angle) * 0.1;
+	var b := sin(angle) * 0.1;
 	
 	var l_ := L + 0.3963377774 * a + 0.2158037573 * b;
 	var m_ := L - 0.1055613458 * a - 0.0638541728 * b;
