@@ -1,8 +1,7 @@
 shader_type canvas_item;
 
 uniform int dist = 2;
-uniform vec4 color: source_color = vec4(0.0, 0.0, 0.0, 0.5);
-uniform float angle: hint_range(0.0, 360.0) = 90.0;
+uniform float opacity: hint_range(0.0, 1.0) = 0.5;
 
 varying vec2 main_uv;
 varying vec2 shadow_uv;
@@ -14,7 +13,7 @@ void vertex() {
 	vec2 uv_half = uv * 0.5;
 	vec2 uv_dist = uv + 1.0;
 	
-	vec2 shadow_direction = (vec4(cos(radians(angle)), sin(radians(angle)), 0.0, 1.0) * MODEL_MATRIX).xy;
+	vec2 shadow_direction = (vec4(0.0, 1.0, 0.0, 1.0) * MODEL_MATRIX).xy;
 	
 	VERTEX *= uv_dist;
 	
@@ -31,8 +30,7 @@ void fragment() {
 		* step(0.0, shadow_uv.x)
 		* step(0.0, shadow_uv.y);
 	
-	// shadow color
-	COLOR = color * shadow_amt;
+	COLOR = vec4(0.0, 0.0, 0.0, shadow_amt * opacity);
 	
 	// sample main colors on top of shadow
 	vec4 main_color = texture(TEXTURE, main_uv)
@@ -41,6 +39,5 @@ void fragment() {
 		* step(0.0, main_uv.x)
 		* step(0.0, main_uv.y);
 	
-	COLOR = mix(COLOR, vec4(0.0, 0.0, 0.0, 1.0), main_color.a);
 	COLOR += main_color * main_color.a;
 }
