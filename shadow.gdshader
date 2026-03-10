@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform vec3 color: source_color = vec3(1.0);
+
 uniform int dist = 2;
 uniform float opacity: hint_range(0.0, 1.0) = 0.5;
 
@@ -39,5 +41,5 @@ void fragment() {
 		* step(0.0, main_uv.x)
 		* step(0.0, main_uv.y);
 	
-	COLOR += main_color * main_color.a;
+	COLOR += main_color * vec4(color, 1.0) * main_color.a;
 }
