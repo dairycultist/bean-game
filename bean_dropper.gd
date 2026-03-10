@@ -33,6 +33,9 @@ func _process(delta: float) -> void:
 	
 	the_bean.global_position.y = lerp(the_bean.global_position.y, get_parent().global_position.y, 10.0 * delta)
 
+	the_bean.scale.x = 1.0 + sin(Time.get_ticks_msec() * 0.01) * 0.05
+	the_bean.scale.y = the_bean.scale.x
+
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 
 	if event.is_action_pressed("click"):
@@ -40,6 +43,7 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 		# drop the_bean
 		the_bean.collision_layer = 1
 		the_bean.freeze = false
+		the_bean.scale = Vector2.ONE
 		
 		BeanSignals.on_bean_dropped.emit(the_bean)
 		
