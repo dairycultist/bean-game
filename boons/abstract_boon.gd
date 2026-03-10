@@ -11,7 +11,6 @@ class_name Boon
 # number go up AND clink clink clink sounds AND many rigidbodies
 
 # TODO add boon animation for idling and triggering
-# TODO make bumpers bounce animation when hit
 
 func _ready() -> void:
 	

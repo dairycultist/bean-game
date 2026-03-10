@@ -5,16 +5,16 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dq0o7"]
 friction = 0.1
-bounce = 1.0
+bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2354"]
-radius = 22.0
+radius = 5.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7qwah"]
-radius = 24.020824
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_udjov"]
-radius = 26.019224
+radius = 6.0
 
 [node name="Bean" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_dq0o7")
@@ -23,16 +23,17 @@ max_contacts_reported = 3
 script = ExtResource("1_dq0o7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_b6u4a")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(-12, -10)
+position = Vector2(-3, -2.5)
 shape = SubResource("CircleShape2D_y2354")
 
 [node name="Collider2" type="CollisionShape2D" parent="."]
-position = Vector2(9, 8)
+position = Vector2(2.25, 2)
 shape = SubResource("CircleShape2D_7qwah")
 
 [node name="Collider3" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 4)
+position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_udjov")
