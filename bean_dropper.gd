@@ -26,10 +26,12 @@ func _ready() -> void:
 	collider.position.x = collider.shape.size.x / 2
 	collider.position.y = collider.shape.size.y / 2
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	
 	var bound = collider.shape.size.x / 2
 	the_bean.global_position.x = clamp((camera.get_local_mouse_position() + camera.position).x, -bound, bound)
+	
+	the_bean.global_position.y = lerp(the_bean.global_position.y, get_parent().global_position.y, 10.0 * delta)
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 
@@ -44,7 +46,7 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int):
 		# make a new the_bean
 		the_bean = bean.instantiate()
 		add_child(the_bean)
-		the_bean.global_position.y = get_parent().global_position.y
+		the_bean.global_position.y = get_parent().global_position.y - 50.0
 		the_bean.global_rotation = randf() * PI * 2
 		the_bean.collision_layer = 0
 		the_bean.freeze = true
