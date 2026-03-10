@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://20qdpjnnrdot"]
+[gd_scene load_steps=9 format=3 uid="uid://20qdpjnnrdot"]
 
 [ext_resource type="Script" uid="uid://g72wydl8scaf" path="res://bumper.gd" id="1_h31vo"]
 [ext_resource type="Texture2D" uid="uid://cj4o4xl1284dq" path="res://bumper.png" id="2_h31vo"]
+[ext_resource type="Shader" uid="uid://ogj1vy305n7g" path="res://shadow.gdshader" id="2_sn2yj"]
 
 [sub_resource type="Animation" id="Animation_h31vo"]
 length = 0.001
@@ -40,6 +41,11 @@ _data = {
 &"bump": SubResource("Animation_32yb8")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_32yb8"]
+shader = ExtResource("2_sn2yj")
+shader_parameter/dist = 4.0
+shader_parameter/opacity = 0.5
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2354"]
 radius = 16.0
 
@@ -53,8 +59,9 @@ libraries = {
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_32yb8")
 texture = ExtResource("2_h31vo")
-offset = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y2354")
