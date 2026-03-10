@@ -14,9 +14,9 @@ func _process(delta: float) -> void:
 	
 	point_label_anim_intensity = lerp(point_label_anim_intensity, 1.0, delta)
 
-func _on_bean_hit_peg(_bean: Bean, _peg: Node) -> bool:
+func _on_bean_hit_peg(_bean: Bean, peg: Peg) -> bool:
 	
-	points += 5
+	points += peg.point_value
 	$PointLabel.text = "Points: " + str(points)
 	
 	point_label_anim_intensity = 4.0

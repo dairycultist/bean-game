@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://20qdpjnnrdot"]
+[gd_scene load_steps=8 format=3 uid="uid://bt8kaq1qrknu4"]
 
-[ext_resource type="Script" uid="uid://g72wydl8scaf" path="res://bumper.gd" id="1_h31vo"]
-[ext_resource type="Texture2D" uid="uid://cj4o4xl1284dq" path="res://bumper.png" id="2_h31vo"]
-[ext_resource type="Material" uid="uid://bs873r6heb1bt" path="res://shadow.tres" id="2_sn2yj"]
+[ext_resource type="Script" uid="uid://g72wydl8scaf" path="res://pegs/peg.gd" id="1_sj13g"]
+[ext_resource type="Material" uid="uid://bs873r6heb1bt" path="res://shadow.tres" id="2_ihmhw"]
+[ext_resource type="Texture2D" uid="uid://buaapxdv7no30" path="res://pegs/peg_duplicator.png" id="3_sj13g"]
 
 [sub_resource type="Animation" id="Animation_h31vo"]
 length = 0.001
@@ -42,10 +42,12 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2354"]
-radius = 16.0
+radius = 12.0
 
 [node name="Bumper" type="StaticBody2D"]
-script = ExtResource("1_h31vo")
+script = ExtResource("1_sj13g")
+point_value = 0
+duplicator = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -55,8 +57,8 @@ libraries = {
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 1
-material = ExtResource("2_sn2yj")
-texture = ExtResource("2_h31vo")
+material = ExtResource("2_ihmhw")
+texture = ExtResource("3_sj13g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y2354")

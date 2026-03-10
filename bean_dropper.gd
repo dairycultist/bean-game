@@ -23,6 +23,8 @@ func _ready() -> void:
 	collider.shape = RectangleShape2D.new()
 	collider.shape.size.x = get_parent().size.x
 	collider.shape.size.y = get_parent().size.y
+	collider.position.x = collider.shape.size.x / 2
+	collider.position.y = collider.shape.size.y / 2
 
 func _process(_delta: float) -> void:
 	

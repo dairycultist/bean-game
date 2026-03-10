@@ -38,8 +38,8 @@ func _process(delta: float) -> void:
 
 func _body_entered(body):
 	
-	# bumper
-	if body is Bumper:
+	# hit a peg
+	if body is Peg:
 		body.bump(self)
 	
 	# play collide sound

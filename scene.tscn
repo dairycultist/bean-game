@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=9 format=3 uid="uid://5ilcdthf5fh5"]
 
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
+[ext_resource type="PackedScene" uid="uid://bt8kaq1qrknu4" path="res://pegs/peg_duplicator.tscn" id="3_ni31j"]
 [ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="4_m7jmp"]
-[ext_resource type="PackedScene" uid="uid://20qdpjnnrdot" path="res://bumper.tscn" id="5_ni31j"]
+[ext_resource type="PackedScene" uid="uid://20qdpjnnrdot" path="res://pegs/peg.tscn" id="5_ni31j"]
 [ext_resource type="Texture2D" uid="uid://8esxwq4mp1eo" path="res://bg.png" id="5_y2354"]
 [ext_resource type="Script" uid="uid://dppaxmnswb3f2" path="res://stat_manager.gd" id="6_y2354"]
 
@@ -13,14 +14,14 @@ font_size = 12
 [node name="Scene" type="Node2D"]
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(6, 6)
+zoom = Vector2(4.5, 4.5)
 
 [node name="DropRegion" type="NinePatchRect" parent="."]
 texture_filter = 1
-offset_left = -120.0
-offset_top = -150.0
-offset_right = 120.0
-offset_bottom = 150.0
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
 texture = ExtResource("5_y2354")
 region_rect = Rect2(0, 0, 64, 64)
 patch_margin_left = 8
@@ -31,19 +32,24 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="Bumper" parent="DropRegion" instance=ExtResource("5_ni31j")]
-position = Vector2(120, 150)
+position = Vector2(149, 166)
 
 [node name="Bumper2" parent="DropRegion" instance=ExtResource("5_ni31j")]
-position = Vector2(33, 194)
+position = Vector2(62, 210)
 
 [node name="Bumper3" parent="DropRegion" instance=ExtResource("5_ni31j")]
-position = Vector2(202, 195)
+position = Vector2(231, 211)
 
 [node name="Bumper4" parent="DropRegion" instance=ExtResource("5_ni31j")]
-position = Vector2(118, 233)
+position = Vector2(203, 311)
+
+[node name="Bumper5" parent="DropRegion" instance=ExtResource("3_ni31j")]
+position = Vector2(150, 248)
+
+[node name="Bumper6" parent="DropRegion" instance=ExtResource("5_ni31j")]
+position = Vector2(95, 311)
 
 [node name="BeanDropper" type="Area2D" parent="DropRegion" node_paths=PackedStringArray("camera")]
-position = Vector2(120, 150)
 script = ExtResource("2_nxogm")
 bean = ExtResource("3_3253y")
 camera = NodePath("../../Camera")

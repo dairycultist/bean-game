@@ -50,6 +50,7 @@ func _on_bean_in_basket(_bean: Bean, _peg: Node):
 # Add 5 point for every bean that escapes the jar.
 # If two beans match, and two other beans match within one second, add 30 points.
 # Beans are bouncy.
+# When the round starts, convert a random peg to a duplicate peg.
 
 # boons connect to signals and use the parameters to determine if they should go off
 # boons are children of the score node (this global class connects them to bean events)

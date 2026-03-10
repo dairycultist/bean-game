@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://20qdpjnnrdot"]
+
+[ext_resource type="Script" uid="uid://g72wydl8scaf" path="res://pegs/peg.gd" id="1_h31vo"]
+[ext_resource type="Texture2D" uid="uid://cj4o4xl1284dq" path="res://pegs/peg.png" id="2_h31vo"]
+[ext_resource type="Material" uid="uid://bs873r6heb1bt" path="res://shadow.tres" id="2_sn2yj"]
+
+[sub_resource type="Animation" id="Animation_h31vo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_32yb8"]
+resource_name = "bump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.10000001, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(0.9, 0.9), Vector2(1.1, 1.1), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou0cc"]
+_data = {
+&"RESET": SubResource("Animation_h31vo"),
+&"bump": SubResource("Animation_32yb8")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2354"]
+radius = 16.0
+
+[node name="Bumper" type="StaticBody2D"]
+script = ExtResource("1_h31vo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ou0cc")
+}
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+material = ExtResource("2_sn2yj")
+texture = ExtResource("2_h31vo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y2354")
