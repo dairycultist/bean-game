@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=10 format=3 uid="uid://5ilcdthf5fh5"]
 
+[ext_resource type="Script" uid="uid://dppwgga1gh2wa" path="res://camera.gd" id="1_xlvrw"]
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
 [ext_resource type="PackedScene" uid="uid://bt8kaq1qrknu4" path="res://pegs/peg_duplicator.tscn" id="3_ni31j"]
@@ -14,7 +15,8 @@ font_size = 12
 [node name="Scene" type="Node2D"]
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(4.5, 4.5)
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("1_xlvrw")
 
 [node name="DropRegion" type="NinePatchRect" parent="."]
 texture_filter = 1

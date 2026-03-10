@@ -9,7 +9,7 @@ class_name Peg
 func bump(bean: Bean):
 	
 	if duplicator:
-		get_node("../BeanDropper").add_child(bean.duplicate())
+		get_node("../BeanDropper").call_deferred("add_child", bean.duplicate())
 	
 	BeanSignals.on_bean_hit_peg.emit(bean, self)
 	$AnimationPlayer.play("bump")
