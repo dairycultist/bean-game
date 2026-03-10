@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bs873r6heb1bt"]
+
+[ext_resource type="Shader" uid="uid://ogj1vy305n7g" path="res://shadow.gdshader" id="1_osji6"]
+
+[resource]
+shader = ExtResource("1_osji6")
+shader_parameter/dist = 2
+shader_parameter/opacity = 0.5

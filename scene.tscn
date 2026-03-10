@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=9 format=3 uid="uid://5ilcdthf5fh5"]
 
+[ext_resource type="Material" uid="uid://bs873r6heb1bt" path="res://shadow.tres" id="1_ni31j"]
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
 [ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="4_m7jmp"]
@@ -17,6 +18,7 @@ zoom = Vector2(6, 6)
 
 [node name="DropRegion" type="NinePatchRect" parent="."]
 texture_filter = 1
+material = ExtResource("1_ni31j")
 offset_left = -120.0
 offset_top = -150.0
 offset_right = 120.0

@@ -1,25 +1,37 @@
 shader_type canvas_item;
 
-uniform float dist = 2.0;
+uniform int dist = 2;
 uniform float opacity: hint_range(0.0, 1.0) = 0.5;
+
+varying vec2 main_uv;
+varying vec2 shadow_uv;
 
 void vertex() {
 	
-	float v_dist = dist * TEXTURE_PIXEL_SIZE.y + 1.0;
+	float uv_dist = float(dist * 2) * TEXTURE_PIXEL_SIZE.y + 1.0;
 	
-	//vec2 down = (vec4(0.0, 1.0, 0.0, 1.0) * MODEL_MATRIX).xy; // TODO implement for rotation accuracy
+	vec2 down = (vec4(0.0, 1.0, 0.0, 1.0) * MODEL_MATRIX).xy;
 	
-	VERTEX.y *= v_dist;
-	VERTEX.y += (v_dist - 1.0) / TEXTURE_PIXEL_SIZE.y / 2.0;
+	VERTEX *= uv_dist;
+	
+	main_uv = UV * uv_dist - (uv_dist - 1.0) / 2.0;
+	shadow_uv = main_uv - down * (uv_dist - 1.0) / 2.0;
 }
 
 void fragment() {
 	
-	float v_dist = dist * TEXTURE_PIXEL_SIZE.y + 1.0;
+	COLOR = texture(TEXTURE, shadow_uv)
+		* step(-1.0, -shadow_uv.x)
+		* step(-1.0, -shadow_uv.y)
+		* step(0.0, shadow_uv.x)
+		* step(0.0, shadow_uv.y);
 	
-	COLOR = texture(TEXTURE, vec2(UV.x, UV.y * v_dist - v_dist + 1.0));
 	COLOR.rgb *= 0.0;
 	COLOR.a *= opacity;
 	
-	COLOR += texture(TEXTURE, vec2(UV.x, UV.y * v_dist)) * (1.0 - step(1.0, UV.y * v_dist));
+	COLOR += texture(TEXTURE, main_uv)
+		* step(-1.0, -main_uv.x)
+		* step(-1.0, -main_uv.y)
+		* step(0.0, main_uv.x)
+		* step(0.0, main_uv.y);
 }
