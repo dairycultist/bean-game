@@ -5,4 +5,5 @@
 [resource]
 shader = ExtResource("1_osji6")
 shader_parameter/dist = 2
-shader_parameter/opacity = 0.5
+shader_parameter/color = Color(0.78814536, 0.2661142, 0.7897463, 0.5019608)
+shader_parameter/angle = 90.0
