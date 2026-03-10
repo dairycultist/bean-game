@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform int dist = 2;
 uniform float opacity: hint_range(0.0, 1.0) = 0.5;
+uniform float angle: hint_range(0.0, 360.0) = 90.0;
 
 varying vec2 main_uv;
 varying vec2 shadow_uv;
@@ -13,12 +14,12 @@ void vertex() {
 	vec2 uv_half = uv * 0.5;
 	vec2 uv_dist = uv + 1.0;
 	
-	vec2 down = (vec4(0.0, 1.0, 0.0, 1.0) * MODEL_MATRIX).xy;
+	vec2 shadow_direction = (vec4(cos(radians(angle)), sin(radians(angle)), 0.0, 1.0) * MODEL_MATRIX).xy;
 	
 	VERTEX *= uv_dist;
 	
 	main_uv = UV * uv_dist - uv_half;
-	shadow_uv = main_uv - down * uv_half;
+	shadow_uv = main_uv - shadow_direction * uv_half;
 }
 
 void fragment() {
