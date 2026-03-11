@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=15 format=3 uid="uid://5ilcdthf5fh5"]
 
 [ext_resource type="Script" uid="uid://dppwgga1gh2wa" path="res://camera.gd" id="1_xlvrw"]
+[ext_resource type="Shader" uid="uid://bsex5qduyysek" path="res://background.gdshader" id="2_73fnb"]
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
 [ext_resource type="PackedScene" uid="uid://bt8kaq1qrknu4" path="res://pegs/peg_duplicator.tscn" id="3_ni31j"]
@@ -9,10 +10,53 @@
 [ext_resource type="Texture2D" uid="uid://8esxwq4mp1eo" path="res://bg.png" id="5_y2354"]
 [ext_resource type="Script" uid="uid://dppaxmnswb3f2" path="res://stat_manager.gd" id="6_y2354"]
 
+[sub_resource type="Gradient" id="Gradient_73fnb"]
+offsets = PackedFloat32Array(0, 0.24152543, 0.4915254, 0.7457627, 1)
+colors = PackedColorArray(1, 0.22909838, 0.5643316, 1, 0, 0, 0, 1, 2.3102762e-06, 0.6438441, 0.91623515, 1, 0, 0, 0, 1, 1, 0.22745098, 0.5647059, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_73fnb"]
+noise_type = 3
+seed = 544
+frequency = 0.0575
+fractal_type = 3
+fractal_octaves = 2
+fractal_lacunarity = 1.0
+fractal_gain = 1.48
+fractal_weighted_strength = 0.58
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_5juve"]
+depth = 16
+noise = SubResource("FastNoiseLite_73fnb")
+color_ramp = SubResource("Gradient_73fnb")
+seamless = true
+seamless_blend_skirt = 0.233
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5juve"]
+shader = ExtResource("2_73fnb")
+shader_parameter/noise = SubResource("NoiseTexture3D_5juve")
+shader_parameter/scale = 3.0
+shader_parameter/speed = 0.14
+
 [sub_resource type="LabelSettings" id="LabelSettings_m7jmp"]
 font_size = 12
 
 [node name="Scene" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+z_index = -90
+material = SubResource("ShaderMaterial_5juve")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -25,7 +69,7 @@ offset_top = -200.0
 offset_right = 150.0
 offset_bottom = 200.0
 texture = ExtResource("5_y2354")
-region_rect = Rect2(0, 0, 64, 64)
+region_rect = Rect2(0, 0, 24, 24)
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8

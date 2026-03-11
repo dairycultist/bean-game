@@ -10,6 +10,20 @@ class_name Boon
 # currently a merging game but I think peggle would be more stimming
 # number go up AND clink clink clink sounds AND many rigidbodies
 
+
+
+
+# arcade game where u have 3 minutes to launch as many beans as possible, buy
+# upgrades, and fatten the wife (simpler than full runs like balatro)
+
+# the beans feed the wife and become the currency you buy stuff with, but when
+# they're falling and hitting pegs they gain you points which contribute to your
+# final score
+
+# pegs break after a few hits, and once you clear all the pegs new ones show up
+# TODO add sprites for pegs in various states of breaking
+
+
 # TODO add boon animation for idling and triggering
 
 # TODO make shadow part of shader?
@@ -51,6 +65,7 @@ func _on_bean_in_basket(_bean: Bean, _peg: Node):
 # If two beans match, and two other beans match within one second, add 30 points.
 # Beans are bouncy.
 # When the round starts, convert a random peg to a duplicate peg.
+# Decrease drop cooldown by 0.1s.
 
 # boons connect to signals and use the parameters to determine if they should go off
 # boons are children of the score node (this global class connects them to bean events)
