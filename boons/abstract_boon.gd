@@ -2,19 +2,14 @@
 extends Sprite2D
 class_name Boon
 
-# I have the idea to make plinko but with jelly beans and instead of a giraffe
-# it's a smiley anime girl with huge boobs and you can send a bunch of beans at
-# once and they go plink plink plink and fall into baskets at the bottom which
-# give a range of points and plinking also gives a small amount of points
+# plinko but with jelly beans and instead of a giraffe it's a smiley anime girl
+# with huge boobs
 
-# currently a merging game but I think peggle would be more stimming
-# number go up AND clink clink clink sounds AND many rigidbodies
-
-
-
+# number go up + clink clink clink sounds + many rigidbodies = stimming
 
 # arcade game where u have 3 minutes to launch as many beans as possible, buy
-# upgrades, and fatten the wife (simpler than full runs like balatro)
+# upgrades (randomly presented, by choice bought), and fatten the wife (simpler
+# than full runs like balatro)
 
 # the beans feed the wife and become the currency you buy stuff with, but when
 # they're falling and hitting pegs they gain you points which contribute to your
@@ -23,10 +18,7 @@ class_name Boon
 # pegs break after a few hits, and once you clear all the pegs new ones show up
 # TODO add sprites for pegs in various states of breaking
 
-
-# TODO add boon animation for idling and triggering
-
-# TODO make shadow part of shader?
+# TODO add boon animation for idling and triggering? show boons you got at end of game?
 
 func _ready() -> void:
 	
@@ -43,27 +35,10 @@ func _on_bean_hit_peg(_bean: Bean, _peg: Node):
 func _on_bean_in_basket(_bean: Bean, _peg: Node):
 	pass
 
-# boons work on a "pick one between each round" system
-# you can only have like four boons equipped at once, but you can destroy a boon at any time
-
-# BOONS:
-# When a bean is dropped, add 1 point for every bean in the jar.
-# When a bean is dropped, add 1 point for every bean of the same color in the jar.
-# When two beans match, convert another bean already in the jar to the color of the matched beans.
-# When two beans match, add another bean of the same color as the matched beans.
-# When two beans match, add a bean with a random color.
-# When two beans match, add a point for every bean in the jar.
-# +5 points per match.
-# +3 drops.
-# If drops reach zero, the jar is shaken and allowed to settle.
-# Double the likelihood of the drawn bean being [COLOR].
-# [COLOR] beans give double points when merged.
-# [COLOR] beans give double points when merged; color changes at the start of each round.
-# The drawn bean cannot be the color there is the least of in the jar (ties pick randomly).
-# The drawn bean cannot be the color there is the most of in the jar (ties pick randomly).
-# Add 5 point for every bean that escapes the jar.
-# If two beans match, and two other beans match within one second, add 30 points.
-# Beans are bouncy.
+# BOONS (upgrades):
+# Hitting pegs gives double points.
+# Escaped/destroyed beans give double beans.
+# Escaped/destroyed beans give +5 points.
 # When the round starts, convert a random peg to a duplicate peg.
 # Decrease drop cooldown by 0.1s.
 
