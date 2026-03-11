@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name Bean
 
-var avg_speed: float
+var _avg_speed: float
 
 var _audio_on_collide: AudioStreamPlayer
 
@@ -34,7 +34,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	avg_speed = lerp(avg_speed, linear_velocity.length(), delta)
+	_avg_speed = lerp(_avg_speed, linear_velocity.length(), delta)
+	
+	if position.y > 450: # TODO hardcoding bad
+		
+		BeanSignals.on_bean_destroyed.emit()
+		queue_free()
 
 func _body_entered(body):
 	
@@ -43,6 +48,6 @@ func _body_entered(body):
 		body.bump(self)
 	
 	# play collide sound
-	_audio_on_collide.volume_linear = (2.0 / (1 + exp(-avg_speed * 0.01))) - 1.0
+	_audio_on_collide.volume_linear = (2.0 / (1 + exp(-_avg_speed * 0.01))) - 1.0
 	_audio_on_collide.pitch_scale = randf_range(0.9, 1.0)
 	_audio_on_collide.play()
