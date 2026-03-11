@@ -31,12 +31,15 @@ func _ready() -> void:
 	collider.position.y = collider.shape.size.y / 2
 	
 	bound = collider.shape.size.x / 2
+	
+	$Character.global_position.y = get_parent().global_position.y
 
 func _process(delta: float) -> void:
 	
 	_the_bean.global_position.x = clamp((camera.get_local_mouse_position() + camera.position).x, -bound, bound)
-	
 	_the_bean.global_position.y = lerp(_the_bean.global_position.y, get_parent().global_position.y, 10.0 * delta)
+
+	$Character.global_position.x = _the_bean.global_position.x
 
 	_the_bean.scale.x = 1.0 + sin(Time.get_ticks_msec() * 0.01) * 0.05
 	_the_bean.scale.y = _the_bean.scale.x

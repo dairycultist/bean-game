@@ -41,6 +41,7 @@ func _on_bean_in_basket(_bean: Bean, _peg: Node):
 # Escaped/destroyed beans give +5 points.
 # When the round starts, convert a random peg to a duplicate peg.
 # Decrease drop cooldown by 0.1s.
+# Permanently add a duplicator peg to peg-pool.
 
 # boons connect to signals and use the parameters to determine if they should go off
 # boons are children of the score node (this global class connects them to bean events)
