@@ -50,6 +50,9 @@ func _process(delta: float) -> void:
 		
 		_time_to_drop = drop_cooldown
 		
+		$Character/AnimationPlayer.play("throw")
+		$Character/AnimationPlayer.seek(0)
+		
 		# drop the_bean
 		_the_bean.collision_layer = 1
 		_the_bean.freeze = false
