@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5ilcdthf5fh5"]
+[gd_scene load_steps=16 format=3 uid="uid://5ilcdthf5fh5"]
 
 [ext_resource type="Script" uid="uid://dppwgga1gh2wa" path="res://camera.gd" id="1_xlvrw"]
 [ext_resource type="Texture2D" uid="uid://lxfffa7y2xfc" path="res://bgg.png" id="2_5juve"]
@@ -6,11 +6,13 @@
 [ext_resource type="Script" uid="uid://bce4vbqpm3soy" path="res://bean_dropper.gd" id="2_nxogm"]
 [ext_resource type="PackedScene" uid="uid://cn757hnlqkpnk" path="res://bean.tscn" id="3_3253y"]
 [ext_resource type="PackedScene" uid="uid://bt8kaq1qrknu4" path="res://pegs/peg_duplicator.tscn" id="3_ni31j"]
-[ext_resource type="Texture2D" uid="uid://b4vmh2345g3sv" path="res://base_character.png" id="4_fy5k1"]
+[ext_resource type="Texture2D" uid="uid://b4vmh2345g3sv" path="res://character/character_body.png" id="4_fy5k1"]
 [ext_resource type="AudioStream" uid="uid://dfx6ai1konf05" path="res://click.wav" id="4_m7jmp"]
 [ext_resource type="PackedScene" uid="uid://20qdpjnnrdot" path="res://pegs/peg.tscn" id="5_ni31j"]
 [ext_resource type="Texture2D" uid="uid://8esxwq4mp1eo" path="res://bg.png" id="5_y2354"]
 [ext_resource type="Script" uid="uid://dppaxmnswb3f2" path="res://stat_manager.gd" id="6_y2354"]
+[ext_resource type="Material" uid="uid://bs873r6heb1bt" path="res://shadow.tres" id="9_5c1cw"]
+[ext_resource type="Texture2D" uid="uid://4mpt1grs7yct" path="res://character/character_arms.png" id="12_akxrc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5juve"]
 shader = ExtResource("2_73fnb")
@@ -83,14 +85,21 @@ script = ExtResource("2_nxogm")
 bean = ExtResource("3_3253y")
 camera = NodePath("../../Camera")
 
-[node name="Character" type="Sprite2D" parent="DropRegion/BeanDropper"]
-texture_filter = 1
-position = Vector2(-71, 200)
-texture = ExtResource("4_fy5k1")
-
 [node name="AudioOnCollide" type="AudioStreamPlayer" parent="DropRegion/BeanDropper"]
 stream = ExtResource("4_m7jmp")
 max_polyphony = 4
+
+[node name="Character" type="Node2D" parent="DropRegion/BeanDropper"]
+
+[node name="Body" type="Sprite2D" parent="DropRegion/BeanDropper/Character"]
+texture_filter = 1
+material = ExtResource("9_5c1cw")
+texture = ExtResource("4_fy5k1")
+
+[node name="Arms" type="Sprite2D" parent="DropRegion/BeanDropper/Character"]
+z_index = 20
+material = ExtResource("9_5c1cw")
+texture = ExtResource("12_akxrc")
 
 [node name="StatManager" type="Node2D" parent="."]
 script = ExtResource("6_y2354")
